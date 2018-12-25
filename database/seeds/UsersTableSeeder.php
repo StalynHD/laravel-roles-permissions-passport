@@ -11,9 +11,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {	
-    	factory(App\User::class, 10)->create()->each(function ($user) {
-			$rol = App\Role::all()->random(1)->first();        	
-        	$user->roles()->save($rol);
+        factory(App\User::class, 10)->create()->each(function ($user) {
+            $rol = App\Role::all()->random(1)->first();    
+            $user->roles()->save($rol);
         });
     }
 }

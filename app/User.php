@@ -31,6 +31,16 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\Role')->withTimestamps();
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function commnets()
+    {
+        return $this->hasMany('App\Comment');
     }
 }

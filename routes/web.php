@@ -20,5 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('random', function () {
-	return 'nada';
+	$author = App\User::whereHas('roles', function($user){
+			$user->where('roles.id', 2);
+		})->get()->random(1)->first();
+	dd ($author);
+	// return 'nada';
 });
