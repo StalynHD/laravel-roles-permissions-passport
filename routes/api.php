@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('token', 'Passport\TokenController@generate');
+Route::post('refresh', 'Passport\TokenController@refresh');
+
+Route::apiResource('posts', 'PostController');
+

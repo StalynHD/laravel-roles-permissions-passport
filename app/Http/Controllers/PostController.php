@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -34,8 +36,17 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $user = User::find(8);
+
+        $post = Post::find($id);
+
+        if ($user->cant('view', $post))
+        {
+            return response()->json(['message' => 'No authorized'], 403);
+        }
+
+        return response($post);
     }
 
     /**
